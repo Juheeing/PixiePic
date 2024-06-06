@@ -44,27 +44,36 @@ class ViewController: UIViewController {
 
     // MARK: - UI
     private func configureUI() {
+        self.view.backgroundColor = .black
         self.view.addSubview(self.mtkView)
         self.view.addSubview(self.filterChangeButton)
         self.view.addSubview(self.captureButton)
-
+        self.view.addSubview(self.switchCameraButton)
+        
         self.filterChangeButton.addTarget(self, action: #selector(filterChangeButtonTapped), for: .touchUpInside)
         self.captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
-
+        self.switchCameraButton.addTarget(self, action: #selector(switchCameraButtonTapped), for: .touchUpInside)
+        
         self.mtkView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
 
         self.filterChangeButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().offset(-15)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(40)
         }
 
         self.captureButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-15)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(80)
+        }
+        
+        self.switchCameraButton.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.width.height.equalTo(40)
         }
     }
     
@@ -85,6 +94,14 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private var switchCameraButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
     // MARK: - configure Metal
 
     private var metalDevice: MTLDevice!
@@ -184,6 +201,48 @@ class ViewController: UIViewController {
     @objc private func captureButtonTapped(_ button: UIButton) {
         let settings = AVCapturePhotoSettings()
         self.photoOutput.capturePhoto(with: settings, delegate: self)
+    }
+    
+    @objc private func switchCameraButtonTapped(_ button: UIButton) {
+        guard let currentInput = self.deviceInput else { return }
+
+        session.beginConfiguration()
+        session.removeInput(currentInput)
+
+        let newCameraPosition: AVCaptureDevice.Position = (currentInput.device.position == .back) ? .front : .back
+        let newCamera = self.cameraWithPosition(position: newCameraPosition)
+
+        do {
+            let newInput = try AVCaptureDeviceInput(device: newCamera!)
+            session.addInput(newInput)
+            self.deviceInput = newInput
+
+            if let connection = self.videoOutput.connection(with: .video) {
+                connection.videoOrientation = .portrait
+                if newCamera?.position == .front {
+                    connection.isVideoMirrored = true
+                } else {
+                    connection.isVideoMirrored = false
+                }
+            }
+        } catch {
+            print("Error switching camera: \(error.localizedDescription)")
+        }
+
+        session.commitConfiguration()
+    }
+
+    // 지정된 위치의 카메라를 찾는 메서드
+    private func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInUltraWideCamera], mediaType: .video, position: .unspecified)
+
+        for device in discoverySession.devices {
+            if device.position == position {
+                return device
+            }
+        }
+
+        return nil
     }
 }
 
