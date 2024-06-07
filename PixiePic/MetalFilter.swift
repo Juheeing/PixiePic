@@ -95,24 +95,25 @@ class MetalFilter {
     
     private func encodeCommand() {
         guard let commandEncoder = commandEncoder, let pipelineState = pipelineState else { return }
-    
-        commandEncoder.setRenderPipelineState(pipelineState)
-        
-        let vertexDataSize = vertexData.count * MemoryLayout<Float>.size
-        let vertexBuffer = device.makeBuffer(bytes: vertexData,
-                                             length: vertexDataSize,
-                                             options: [])
-        
-        commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+            
+            commandEncoder.setRenderPipelineState(pipelineState)
+            
+            let vertexDataSize = vertexData.count * MemoryLayout<Float>.size
+            let vertexBuffer = device.makeBuffer(bytes: vertexData,
+                                                 length: vertexDataSize,
+                                                 options: [])
+            
+            commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
 
-        commandEncoder.setFragmentTexture(inputTexture, index: 0)
-        commandEncoder.setFragmentTexture(lutTexture, index: 1)
+            commandEncoder.setFragmentTexture(inputTexture, index: 0)
+            // Bind the lutTexture as a 3D texture
+            commandEncoder.setFragmentTexture(lutTexture, index: 1)
 
-        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
-        
-        commandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexData.count / 2)
-        
-        commandEncoder.endEncoding()
+            commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+            
+            commandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexData.count / 2)
+            
+            commandEncoder.endEncoding()
     }
     
     private func makeSamplerState() -> MTLSamplerState {
@@ -138,13 +139,61 @@ class MetalFilter {
     }
     
     private func makeLUTTexture(lookUp: Lookup) -> MTLTexture? {
-        let lutImage = UIImage(named: lookUp.rawValue)
-        guard let cgImage = lutImage?.cgImage else {
+        guard let cubeURL = Bundle.main.url(forResource: "Arabica", withExtension: "CUBE") else {
+                return nil
+            }
+            
+        guard let cubeData = try? String(contentsOf: cubeURL) else {
+            // Unable to load data from the cube file
             return nil
         }
         
-        let textureLoader = MTKTextureLoader(device: self.device)
-        let texture = try? textureLoader.newTexture(cgImage: cgImage, options: nil)
+        let lines = cubeData.components(separatedBy: .newlines)
+        var lutColors: [Float] = []
+        
+        for line in lines {
+            if line.hasPrefix("#") || line.isEmpty {
+                continue // Skip comments and empty lines
+            }
+            
+            let components = line.components(separatedBy: .whitespaces)
+            guard components.count == 3 else {
+                // Invalid line format
+                continue
+            }
+            
+            if let r = Float(components[0]), let g = Float(components[1]), let b = Float(components[2]) {
+                lutColors.append(contentsOf: [r, g, b])
+            } else {
+                // Invalid color values
+                continue
+            }
+        }
+        
+        guard !lutColors.isEmpty else {
+            // No valid color data found
+            return nil
+        }
+        
+        // Create Metal texture descriptor for a 3D texture
+        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm,
+                                                                          width: 32,
+                                                                          height: 32,
+                                                                          mipmapped: false)
+        textureDescriptor.textureType = .type3D
+        textureDescriptor.depth = 32
+        
+        // Additional properties can be set for the texture descriptor if needed
+        
+        guard let texture = device.makeTexture(descriptor: textureDescriptor) else {
+            // Unable to create Metal texture
+            return nil
+        }
+        
+        let region = MTLRegion(origin: MTLOrigin(x: 0, y: 0, z: 0),
+                               size: MTLSize(width: 32, height: 32, depth: 32))
+        texture.replace(region: region, mipmapLevel: 0, slice: 0, withBytes: lutColors, bytesPerRow: 32 * 3 * MemoryLayout<Float>.size, bytesPerImage: 32 * 32 * 3 * MemoryLayout<Float>.size)
+        
         return texture
     }
     
