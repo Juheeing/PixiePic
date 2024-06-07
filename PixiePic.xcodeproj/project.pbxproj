@@ -7,6 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D17F06BF2C1285F400EB2CA1 /* LookupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17F06BE2C1285F400EB2CA1 /* LookupModel.swift */; };
+		D17F06E32C1286F700EB2CA1 /* Lenox.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C02C1286F600EB2CA1 /* Lenox.CUBE */; };
+		D17F06E42C1286F700EB2CA1 /* Django.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C12C1286F600EB2CA1 /* Django.CUBE */; };
+		D17F06E52C1286F700EB2CA1 /* Tweed.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C22C1286F600EB2CA1 /* Tweed.CUBE */; };
+		D17F06E62C1286F700EB2CA1 /* Neon.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C32C1286F600EB2CA1 /* Neon.CUBE */; };
+		D17F06E72C1286F700EB2CA1 /* Sprocket.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C42C1286F600EB2CA1 /* Sprocket.CUBE */; };
+		D17F06E82C1286F700EB2CA1 /* Bourbon.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C52C1286F600EB2CA1 /* Bourbon.CUBE */; };
+		D17F06E92C1286F700EB2CA1 /* Azrael.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C62C1286F600EB2CA1 /* Azrael.CUBE */; };
+		D17F06EA2C1286F700EB2CA1 /* Domingo.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C72C1286F600EB2CA1 /* Domingo.CUBE */; };
+		D17F06EB2C1286F700EB2CA1 /* Clouseau.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C82C1286F600EB2CA1 /* Clouseau.CUBE */; };
+		D17F06EC2C1286F700EB2CA1 /* Contrail.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06C92C1286F600EB2CA1 /* Contrail.CUBE */; };
+		D17F06ED2C1286F700EB2CA1 /* Milo.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CA2C1286F600EB2CA1 /* Milo.CUBE */; };
+		D17F06EE2C1286F700EB2CA1 /* Ava.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CB2C1286F600EB2CA1 /* Ava.CUBE */; };
+		D17F06EF2C1286F700EB2CA1 /* Reeve.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CC2C1286F600EB2CA1 /* Reeve.CUBE */; };
+		D17F06F02C1286F700EB2CA1 /* Pitaya.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CD2C1286F600EB2CA1 /* Pitaya.CUBE */; };
+		D17F06F12C1286F700EB2CA1 /* Korben.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CE2C1286F600EB2CA1 /* Korben.CUBE */; };
+		D17F06F22C1286F700EB2CA1 /* Pasadena.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06CF2C1286F600EB2CA1 /* Pasadena.CUBE */; };
+		D17F06F32C1286F700EB2CA1 /* Trent.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D02C1286F600EB2CA1 /* Trent.CUBE */; };
+		D17F06F42C1286F700EB2CA1 /* Faded.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D12C1286F700EB2CA1 /* Faded.CUBE */; };
+		D17F06F52C1286F700EB2CA1 /* Paladin.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D22C1286F700EB2CA1 /* Paladin.CUBE */; };
+		D17F06F62C1286F700EB2CA1 /* Byers.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D32C1286F700EB2CA1 /* Byers.CUBE */; };
+		D17F06F72C1286F700EB2CA1 /* Arabica.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D42C1286F700EB2CA1 /* Arabica.CUBE */; };
+		D17F06F82C1286F700EB2CA1 /* Zeke.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D52C1286F700EB2CA1 /* Zeke.CUBE */; };
+		D17F06F92C1286F700EB2CA1 /* Chemical.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D62C1286F700EB2CA1 /* Chemical.CUBE */; };
+		D17F06FA2C1286F700EB2CA1 /* Lucky.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D72C1286F700EB2CA1 /* Lucky.CUBE */; };
+		D17F06FB2C1286F700EB2CA1 /* Clayton.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D82C1286F700EB2CA1 /* Clayton.CUBE */; };
+		D17F06FC2C1286F700EB2CA1 /* Folger.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06D92C1286F700EB2CA1 /* Folger.CUBE */; };
+		D17F06FD2C1286F700EB2CA1 /* Fusion.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DA2C1286F700EB2CA1 /* Fusion.CUBE */; };
+		D17F06FE2C1286F700EB2CA1 /* McKinnon.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DB2C1286F700EB2CA1 /* McKinnon.CUBE */; };
+		D17F06FF2C1286F700EB2CA1 /* Cobi.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DC2C1286F700EB2CA1 /* Cobi.CUBE */; };
+		D17F07002C1286F700EB2CA1 /* Remy.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DD2C1286F700EB2CA1 /* Remy.CUBE */; };
+		D17F07012C1286F700EB2CA1 /* Hyla.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DE2C1286F700EB2CA1 /* Hyla.CUBE */; };
+		D17F07022C1286F700EB2CA1 /* Cubicle.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06DF2C1286F700EB2CA1 /* Cubicle.CUBE */; };
+		D17F07032C1286F700EB2CA1 /* Zed.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06E02C1286F700EB2CA1 /* Zed.CUBE */; };
+		D17F07042C1286F700EB2CA1 /* Teigen.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06E12C1286F700EB2CA1 /* Teigen.CUBE */; };
+		D17F07052C1286F700EB2CA1 /* Vireo.CUBE in Resources */ = {isa = PBXBuildFile; fileRef = D17F06E22C1286F700EB2CA1 /* Vireo.CUBE */; };
+		D17F07072C1288BB00EB2CA1 /* LookupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17F07062C1288BB00EB2CA1 /* LookupFilter.swift */; };
+		D1C383402C12EA02007E9EC9 /* MetalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3833F2C12EA02007E9EC9 /* MetalFilter.swift */; };
+		D1C383422C12EAA0007E9EC9 /* filters.metal in Sources */ = {isa = PBXBuildFile; fileRef = D1C383412C12EAA0007E9EC9 /* filters.metal */; };
 		D5A2B82A2C11A5F00054700F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2B8292C11A5F00054700F /* AppDelegate.swift */; };
 		D5A2B82C2C11A5F00054700F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2B82B2C11A5F00054700F /* SceneDelegate.swift */; };
 		D5A2B82E2C11A5F00054700F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2B82D2C11A5F00054700F /* ViewController.swift */; };
@@ -17,6 +56,45 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D17F06BE2C1285F400EB2CA1 /* LookupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupModel.swift; sourceTree = "<group>"; };
+		D17F06C02C1286F600EB2CA1 /* Lenox.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lenox.CUBE; sourceTree = "<group>"; };
+		D17F06C12C1286F600EB2CA1 /* Django.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Django.CUBE; sourceTree = "<group>"; };
+		D17F06C22C1286F600EB2CA1 /* Tweed.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweed.CUBE; sourceTree = "<group>"; };
+		D17F06C32C1286F600EB2CA1 /* Neon.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Neon.CUBE; sourceTree = "<group>"; };
+		D17F06C42C1286F600EB2CA1 /* Sprocket.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sprocket.CUBE; sourceTree = "<group>"; };
+		D17F06C52C1286F600EB2CA1 /* Bourbon.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Bourbon.CUBE; sourceTree = "<group>"; };
+		D17F06C62C1286F600EB2CA1 /* Azrael.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Azrael.CUBE; sourceTree = "<group>"; };
+		D17F06C72C1286F600EB2CA1 /* Domingo.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Domingo.CUBE; sourceTree = "<group>"; };
+		D17F06C82C1286F600EB2CA1 /* Clouseau.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clouseau.CUBE; sourceTree = "<group>"; };
+		D17F06C92C1286F600EB2CA1 /* Contrail.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contrail.CUBE; sourceTree = "<group>"; };
+		D17F06CA2C1286F600EB2CA1 /* Milo.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Milo.CUBE; sourceTree = "<group>"; };
+		D17F06CB2C1286F600EB2CA1 /* Ava.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ava.CUBE; sourceTree = "<group>"; };
+		D17F06CC2C1286F600EB2CA1 /* Reeve.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reeve.CUBE; sourceTree = "<group>"; };
+		D17F06CD2C1286F600EB2CA1 /* Pitaya.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Pitaya.CUBE; sourceTree = "<group>"; };
+		D17F06CE2C1286F600EB2CA1 /* Korben.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Korben.CUBE; sourceTree = "<group>"; };
+		D17F06CF2C1286F600EB2CA1 /* Pasadena.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Pasadena.CUBE; sourceTree = "<group>"; };
+		D17F06D02C1286F600EB2CA1 /* Trent.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Trent.CUBE; sourceTree = "<group>"; };
+		D17F06D12C1286F700EB2CA1 /* Faded.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faded.CUBE; sourceTree = "<group>"; };
+		D17F06D22C1286F700EB2CA1 /* Paladin.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Paladin.CUBE; sourceTree = "<group>"; };
+		D17F06D32C1286F700EB2CA1 /* Byers.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Byers.CUBE; sourceTree = "<group>"; };
+		D17F06D42C1286F700EB2CA1 /* Arabica.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arabica.CUBE; sourceTree = "<group>"; };
+		D17F06D52C1286F700EB2CA1 /* Zeke.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Zeke.CUBE; sourceTree = "<group>"; };
+		D17F06D62C1286F700EB2CA1 /* Chemical.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Chemical.CUBE; sourceTree = "<group>"; };
+		D17F06D72C1286F700EB2CA1 /* Lucky.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lucky.CUBE; sourceTree = "<group>"; };
+		D17F06D82C1286F700EB2CA1 /* Clayton.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clayton.CUBE; sourceTree = "<group>"; };
+		D17F06D92C1286F700EB2CA1 /* Folger.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Folger.CUBE; sourceTree = "<group>"; };
+		D17F06DA2C1286F700EB2CA1 /* Fusion.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fusion.CUBE; sourceTree = "<group>"; };
+		D17F06DB2C1286F700EB2CA1 /* McKinnon.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = McKinnon.CUBE; sourceTree = "<group>"; };
+		D17F06DC2C1286F700EB2CA1 /* Cobi.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cobi.CUBE; sourceTree = "<group>"; };
+		D17F06DD2C1286F700EB2CA1 /* Remy.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Remy.CUBE; sourceTree = "<group>"; };
+		D17F06DE2C1286F700EB2CA1 /* Hyla.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Hyla.CUBE; sourceTree = "<group>"; };
+		D17F06DF2C1286F700EB2CA1 /* Cubicle.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cubicle.CUBE; sourceTree = "<group>"; };
+		D17F06E02C1286F700EB2CA1 /* Zed.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Zed.CUBE; sourceTree = "<group>"; };
+		D17F06E12C1286F700EB2CA1 /* Teigen.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Teigen.CUBE; sourceTree = "<group>"; };
+		D17F06E22C1286F700EB2CA1 /* Vireo.CUBE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vireo.CUBE; sourceTree = "<group>"; };
+		D17F07062C1288BB00EB2CA1 /* LookupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupFilter.swift; sourceTree = "<group>"; };
+		D1C3833F2C12EA02007E9EC9 /* MetalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalFilter.swift; sourceTree = "<group>"; };
+		D1C383412C12EAA0007E9EC9 /* filters.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = filters.metal; sourceTree = "<group>"; };
 		D5A2B8262C11A5F00054700F /* PixiePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A2B8292C11A5F00054700F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5A2B82B2C11A5F00054700F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +117,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D17F06BD2C1285CE00EB2CA1 /* Lookup */ = {
+			isa = PBXGroup;
+			children = (
+				D17F06D42C1286F700EB2CA1 /* Arabica.CUBE */,
+				D17F06CB2C1286F600EB2CA1 /* Ava.CUBE */,
+				D17F06C62C1286F600EB2CA1 /* Azrael.CUBE */,
+				D17F06C52C1286F600EB2CA1 /* Bourbon.CUBE */,
+				D17F06D32C1286F700EB2CA1 /* Byers.CUBE */,
+				D17F06D62C1286F700EB2CA1 /* Chemical.CUBE */,
+				D17F06D82C1286F700EB2CA1 /* Clayton.CUBE */,
+				D17F06C82C1286F600EB2CA1 /* Clouseau.CUBE */,
+				D17F06DC2C1286F700EB2CA1 /* Cobi.CUBE */,
+				D17F06C92C1286F600EB2CA1 /* Contrail.CUBE */,
+				D17F06DF2C1286F700EB2CA1 /* Cubicle.CUBE */,
+				D17F06C12C1286F600EB2CA1 /* Django.CUBE */,
+				D17F06C72C1286F600EB2CA1 /* Domingo.CUBE */,
+				D17F06D12C1286F700EB2CA1 /* Faded.CUBE */,
+				D17F06D92C1286F700EB2CA1 /* Folger.CUBE */,
+				D17F06DA2C1286F700EB2CA1 /* Fusion.CUBE */,
+				D17F06DE2C1286F700EB2CA1 /* Hyla.CUBE */,
+				D17F06CE2C1286F600EB2CA1 /* Korben.CUBE */,
+				D17F06C02C1286F600EB2CA1 /* Lenox.CUBE */,
+				D17F06D72C1286F700EB2CA1 /* Lucky.CUBE */,
+				D17F06DB2C1286F700EB2CA1 /* McKinnon.CUBE */,
+				D17F06CA2C1286F600EB2CA1 /* Milo.CUBE */,
+				D17F06C32C1286F600EB2CA1 /* Neon.CUBE */,
+				D17F06D22C1286F700EB2CA1 /* Paladin.CUBE */,
+				D17F06CF2C1286F600EB2CA1 /* Pasadena.CUBE */,
+				D17F06CD2C1286F600EB2CA1 /* Pitaya.CUBE */,
+				D17F06CC2C1286F600EB2CA1 /* Reeve.CUBE */,
+				D17F06DD2C1286F700EB2CA1 /* Remy.CUBE */,
+				D17F06C42C1286F600EB2CA1 /* Sprocket.CUBE */,
+				D17F06E12C1286F700EB2CA1 /* Teigen.CUBE */,
+				D17F06D02C1286F600EB2CA1 /* Trent.CUBE */,
+				D17F06C22C1286F600EB2CA1 /* Tweed.CUBE */,
+				D17F06E22C1286F700EB2CA1 /* Vireo.CUBE */,
+				D17F06E02C1286F700EB2CA1 /* Zed.CUBE */,
+				D17F06D52C1286F700EB2CA1 /* Zeke.CUBE */,
+				D17F06BE2C1285F400EB2CA1 /* LookupModel.swift */,
+				D17F07062C1288BB00EB2CA1 /* LookupFilter.swift */,
+			);
+			path = Lookup;
+			sourceTree = "<group>";
+		};
 		D5A2B81D2C11A5F00054700F = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +180,7 @@
 		D5A2B8282C11A5F00054700F /* PixiePic */ = {
 			isa = PBXGroup;
 			children = (
+				D17F06BD2C1285CE00EB2CA1 /* Lookup */,
 				D5A2B8292C11A5F00054700F /* AppDelegate.swift */,
 				D5A2B82B2C11A5F00054700F /* SceneDelegate.swift */,
 				D5A2B82D2C11A5F00054700F /* ViewController.swift */,
@@ -65,6 +188,8 @@
 				D5A2B8322C11A5F10054700F /* Assets.xcassets */,
 				D5A2B8342C11A5F10054700F /* LaunchScreen.storyboard */,
 				D5A2B8372C11A5F10054700F /* Info.plist */,
+				D1C3833F2C12EA02007E9EC9 /* MetalFilter.swift */,
+				D1C383412C12EAA0007E9EC9 /* filters.metal */,
 			);
 			path = PixiePic;
 			sourceTree = "<group>";
@@ -133,9 +258,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17F06FC2C1286F700EB2CA1 /* Folger.CUBE in Resources */,
+				D17F06E92C1286F700EB2CA1 /* Azrael.CUBE in Resources */,
+				D17F06F82C1286F700EB2CA1 /* Zeke.CUBE in Resources */,
+				D17F07042C1286F700EB2CA1 /* Teigen.CUBE in Resources */,
+				D17F06E32C1286F700EB2CA1 /* Lenox.CUBE in Resources */,
+				D17F06E52C1286F700EB2CA1 /* Tweed.CUBE in Resources */,
+				D17F06E62C1286F700EB2CA1 /* Neon.CUBE in Resources */,
+				D17F06F92C1286F700EB2CA1 /* Chemical.CUBE in Resources */,
+				D17F06F52C1286F700EB2CA1 /* Paladin.CUBE in Resources */,
+				D17F06FF2C1286F700EB2CA1 /* Cobi.CUBE in Resources */,
+				D17F06F62C1286F700EB2CA1 /* Byers.CUBE in Resources */,
 				D5A2B8362C11A5F10054700F /* LaunchScreen.storyboard in Resources */,
+				D17F06EC2C1286F700EB2CA1 /* Contrail.CUBE in Resources */,
 				D5A2B8332C11A5F10054700F /* Assets.xcassets in Resources */,
+				D17F06EA2C1286F700EB2CA1 /* Domingo.CUBE in Resources */,
+				D17F06F32C1286F700EB2CA1 /* Trent.CUBE in Resources */,
+				D17F07012C1286F700EB2CA1 /* Hyla.CUBE in Resources */,
+				D17F06F12C1286F700EB2CA1 /* Korben.CUBE in Resources */,
+				D17F06FD2C1286F700EB2CA1 /* Fusion.CUBE in Resources */,
+				D17F06EB2C1286F700EB2CA1 /* Clouseau.CUBE in Resources */,
+				D17F06FA2C1286F700EB2CA1 /* Lucky.CUBE in Resources */,
+				D17F06F42C1286F700EB2CA1 /* Faded.CUBE in Resources */,
+				D17F06EE2C1286F700EB2CA1 /* Ava.CUBE in Resources */,
 				D5A2B8312C11A5F00054700F /* Main.storyboard in Resources */,
+				D17F06E42C1286F700EB2CA1 /* Django.CUBE in Resources */,
+				D17F07052C1286F700EB2CA1 /* Vireo.CUBE in Resources */,
+				D17F06FE2C1286F700EB2CA1 /* McKinnon.CUBE in Resources */,
+				D17F06EF2C1286F700EB2CA1 /* Reeve.CUBE in Resources */,
+				D17F06F72C1286F700EB2CA1 /* Arabica.CUBE in Resources */,
+				D17F06F02C1286F700EB2CA1 /* Pitaya.CUBE in Resources */,
+				D17F07032C1286F700EB2CA1 /* Zed.CUBE in Resources */,
+				D17F06F22C1286F700EB2CA1 /* Pasadena.CUBE in Resources */,
+				D17F07002C1286F700EB2CA1 /* Remy.CUBE in Resources */,
+				D17F06FB2C1286F700EB2CA1 /* Clayton.CUBE in Resources */,
+				D17F06E72C1286F700EB2CA1 /* Sprocket.CUBE in Resources */,
+				D17F07022C1286F700EB2CA1 /* Cubicle.CUBE in Resources */,
+				D17F06ED2C1286F700EB2CA1 /* Milo.CUBE in Resources */,
+				D17F06E82C1286F700EB2CA1 /* Bourbon.CUBE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A2B82E2C11A5F00054700F /* ViewController.swift in Sources */,
+				D1C383422C12EAA0007E9EC9 /* filters.metal in Sources */,
+				D1C383402C12EA02007E9EC9 /* MetalFilter.swift in Sources */,
 				D5A2B82A2C11A5F00054700F /* AppDelegate.swift in Sources */,
+				D17F07072C1288BB00EB2CA1 /* LookupFilter.swift in Sources */,
 				D5A2B82C2C11A5F00054700F /* SceneDelegate.swift in Sources */,
+				D17F06BF2C1285F400EB2CA1 /* LookupModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				DEVELOPMENT_TEAM = 6M4C5C72YG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -329,7 +493,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				DEVELOPMENT_TEAM = 6M4C5C72YG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

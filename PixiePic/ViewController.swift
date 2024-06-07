@@ -282,11 +282,10 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     func applyFilter(inputImage image: CIImage) -> CIImage? {
-        var filteredImage: CIImage?
-
-        self.sepiaFilter.setValue(image, forKey: kCIInputImageKey)
-        filteredImage = self.sepiaFilter.outputImage
-
+        let metalFilter = MetalFilter(inputImage: image)
+        let lookup = Lookup.allCases[0]
+        let filteredImage = metalFilter.applyFilter(with: lookup)
+        
         return filteredImage
     }
 }
