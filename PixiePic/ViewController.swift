@@ -10,11 +10,16 @@ import MetalKit
 import AVFoundation
 import CoreImage
 import SnapKit
+import PhotosUI
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PHPickerViewControllerDelegate {
 
     private var mtkView: MTKView = MTKView()
-
+    private var imageView: UIImageView = UIImageView()
+    private var isImageMode: Bool = false
+    private var capturedImage: UIImage?
+    private var lookupFilter: LookupFilter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,20 +51,30 @@ class ViewController: UIViewController {
     private func configureUI() {
         self.view.backgroundColor = .black
         self.view.addSubview(self.mtkView)
+        self.view.addSubview(self.imageView)
         self.view.addSubview(self.filterChangeButton)
         self.view.addSubview(self.captureButton)
         self.view.addSubview(self.switchCameraButton)
+        self.view.addSubview(self.galleryAccessButton)
         
         self.filterChangeButton.addTarget(self, action: #selector(filterChangeButtonTapped), for: .touchUpInside)
         self.captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
         self.switchCameraButton.addTarget(self, action: #selector(switchCameraButtonTapped), for: .touchUpInside)
+        self.galleryAccessButton.addTarget(self, action: #selector(galleryAccessButtonTapped), for: .touchUpInside)
         
         self.mtkView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
 
+        self.imageView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        self.imageView.contentMode = .scaleAspectFit
+        self.imageView.isHidden = true
+        
         self.filterChangeButton.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(40)
         }
@@ -72,6 +87,12 @@ class ViewController: UIViewController {
         
         self.switchCameraButton.snp.makeConstraints { make in
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.width.height.equalTo(40)
+        }
+        
+        self.galleryAccessButton.snp.makeConstraints { make in
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(40)
         }
@@ -97,6 +118,14 @@ class ViewController: UIViewController {
     private var switchCameraButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
+    private var galleryAccessButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 20
         return button
@@ -195,12 +224,32 @@ class ViewController: UIViewController {
     }()
 
     @objc private func filterChangeButtonTapped(_ button: UIButton) {
-        self.filterApplied.toggle()
+        if isImageMode {
+            if let inputImage = self.imageView.image,
+               let cgInputImage = inputImage.cgImage,
+               let filteredImage = applyFilter(inputImage: CIImage(cgImage: cgInputImage)) {
+                self.imageView.image = UIImage(ciImage: filteredImage)
+            } else {
+                print("Failed to apply filter")
+            }
+        } else {
+            self.filterApplied.toggle()
+        }
     }
     
     @objc private func captureButtonTapped(_ button: UIButton) {
-        let settings = AVCapturePhotoSettings()
-        self.photoOutput.capturePhoto(with: settings, delegate: self)
+        if isImageMode {
+            guard let image = imageView.image else { return }
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        } else {
+            imageView.isHidden = false
+            mtkView.isHidden = true
+            galleryAccessButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+            captureButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+            isImageMode = true
+            let settings = AVCapturePhotoSettings()
+            self.photoOutput.capturePhoto(with: settings, delegate: self)
+        }
     }
     
     @objc private func switchCameraButtonTapped(_ button: UIButton) {
@@ -231,7 +280,46 @@ class ViewController: UIViewController {
 
         session.commitConfiguration()
     }
+    
+    @objc private func galleryAccessButtonTapped(_ button: UIButton) {
+        if isImageMode {
+            isImageMode = false
+            self.galleryAccessButton.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
+            self.captureButton.setImage(UIImage(systemName: "camera.circle"), for: .normal)
+            self.imageView.isHidden = true
+            self.mtkView.isHidden = false
+        } else {
+            var configuration = PHPickerConfiguration()
+            configuration.filter = .images
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            present(picker, animated: true)
+        }
+    }
 
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        isImageMode = false
+        
+        guard let itemProvider = results.first?.itemProvider else { return }
+
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    if let image = image as? UIImage {
+                        self.imageView.image = image
+                        self.imageView.isHidden = false
+                        self.mtkView.isHidden = true
+                        self.galleryAccessButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+                        self.captureButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+                        self.isImageMode = true
+                    }
+                }
+            }
+        }
+    }
+    
     // 지정된 위치의 카메라를 찾는 메서드
     private func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInUltraWideCamera], mediaType: .video, position: .unspecified)
@@ -251,7 +339,8 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation() else { return }
         guard let image = UIImage(data: imageData) else { return }
 
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        imageView.image = image
+        
     }
 }
 
@@ -282,10 +371,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     func applyFilter(inputImage image: CIImage) -> CIImage? {
-        let metalFilter = MetalFilter(inputImage: image)
-        let lookup = Lookup.allCases[0]
-        let filteredImage = metalFilter.applyFilter(with: lookup)
+//        let metalFilter = MetalFilter(inputImage: image)
+//        let lookup = Lookup.sample
+//        let filteredImage = metalFilter.applyFilter(with: lookup)
         
+        lookupFilter = LookupFilter(inputImage: image)
+        let lookup = Lookup.sample
+        let filteredImage = lookupFilter!.applyFilter(with: lookup)
         return filteredImage
     }
 }

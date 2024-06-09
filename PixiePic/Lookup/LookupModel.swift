@@ -8,6 +8,7 @@
 import Foundation
 
 enum Lookup: String, CaseIterable {
+    case sample
     case Arabica
     case Ava
     case Azrael

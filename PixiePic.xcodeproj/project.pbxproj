@@ -161,6 +161,15 @@
 			path = Lookup;
 			sourceTree = "<group>";
 		};
+		D55AE7DC2C15898200CCC33D /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				D1C3833F2C12EA02007E9EC9 /* MetalFilter.swift */,
+				D1C383412C12EAA0007E9EC9 /* filters.metal */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
 		D5A2B81D2C11A5F00054700F = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +189,7 @@
 		D5A2B8282C11A5F00054700F /* PixiePic */ = {
 			isa = PBXGroup;
 			children = (
+				D55AE7DC2C15898200CCC33D /* Metal */,
 				D17F06BD2C1285CE00EB2CA1 /* Lookup */,
 				D5A2B8292C11A5F00054700F /* AppDelegate.swift */,
 				D5A2B82B2C11A5F00054700F /* SceneDelegate.swift */,
@@ -188,8 +198,6 @@
 				D5A2B8322C11A5F10054700F /* Assets.xcassets */,
 				D5A2B8342C11A5F10054700F /* LaunchScreen.storyboard */,
 				D5A2B8372C11A5F10054700F /* Info.plist */,
-				D1C3833F2C12EA02007E9EC9 /* MetalFilter.swift */,
-				D1C383412C12EAA0007E9EC9 /* filters.metal */,
 			);
 			path = PixiePic;
 			sourceTree = "<group>";
