@@ -376,7 +376,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //        let filteredImage = metalFilter.applyFilter(with: lookup)
         
         lookupFilter = LookupFilter(inputImage: image)
-        let lookup = Lookup.sample
+        let lookup = Lookup.agfa_advantix_100
         let filteredImage = lookupFilter!.applyFilter(with: lookup)
         return filteredImage
     }
