@@ -17,7 +17,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     private var mtkView: MTKView = MTKView()
     private var imageView: UIImageView = UIImageView()
     private var isImageMode: Bool = false
-    private var capturedImage: UIImage?
+    private var albumImage: UIImage?
     private var lookupFilter: LookupFilter?
     private var collectionView: UICollectionView!
     private var filterNames: [String] = LookupModel.allCases.map { $0.rawValue }
@@ -27,10 +27,10 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
         super.viewDidLoad()
 
         configureUI()
+        configureCollectionView()
         configureMetal()
         configureCoreImage()
         requestCameraPermissionAndConfigureSession()
-        configureCollectionView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +52,51 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     }
 
     // MARK: - UI
+    private var filterChangeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "camera.filters"), for: .normal)
+        button.backgroundColor = .darkGray
+        button.tintColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
+    private var captureButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "camera.circle"), for: .normal)
+        button.backgroundColor = .darkGray
+        button.tintColor = .white
+        button.layer.cornerRadius = 40
+        return button
+    }()
+
+    private var switchCameraButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
+        button.backgroundColor = .darkGray
+        button.tintColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
+    private var galleryAccessButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
+        button.backgroundColor = .darkGray
+        button.tintColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
+    private var closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        button.backgroundColor = .darkGray
+        button.tintColor = .white
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
     private func configureUI() {
         self.view.backgroundColor = .black
         self.view.addSubview(self.mtkView)
@@ -67,26 +112,36 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
         self.galleryAccessButton.addTarget(self, action: #selector(galleryAccessButtonTapped), for: .touchUpInside)
         
         self.mtkView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(mtkView.snp.width).multipliedBy(4.0/3.0)
+            make.center.equalTo(view.safeAreaLayoutGuide)
         }
 
         self.imageView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(imageView.snp.width).multipliedBy(4.0/3.0)
+            make.center.equalTo(view.safeAreaLayoutGuide)
         }
         
         self.imageView.contentMode = .scaleAspectFit
         self.imageView.isHidden = true
         
-        self.filterChangeButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
-            make.width.height.equalTo(40)
-        }
-
         self.captureButton.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(80)
+        }
+
+        self.filterChangeButton.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.centerY.equalTo(captureButton.snp.centerY)
+            make.width.height.equalTo(50)
+        }
+        
+        self.galleryAccessButton.snp.makeConstraints { make in
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.centerY.equalTo(captureButton.snp.centerY)
+            make.width.height.equalTo(50)
         }
         
         self.switchCameraButton.snp.makeConstraints { make in
@@ -94,54 +149,41 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.width.height.equalTo(40)
         }
-        
-        self.galleryAccessButton.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
-            make.width.height.equalTo(40)
-        }
     }
     
-    private var filterChangeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "camera.filters"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        return button
-    }()
-    
-    private var captureButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "camera.circle"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 40
-        button.clipsToBounds = true
-        return button
-    }()
+    private func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: 80, height: 80)
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(FilterCell.self, forCellWithReuseIdentifier: FilterCell.identifier)
+        collectionView.isHidden = true
+        collectionView.backgroundColor = .black
+        
+        self.view.addSubview(collectionView)
+        self.view.addSubview(closeButton)
+        
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
 
-    private var switchCameraButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        return button
-    }()
-    
-    private var galleryAccessButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        return button
-    }()
-    
-    private var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        return button
-    }()
+        closeButton.isHidden = true
+        
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(100)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.bottom.equalTo(collectionView.snp.top).offset(-10)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+        }
+    }
     
     // MARK: - configure Metal
 
@@ -188,24 +230,29 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     }
 
     private func configureCaptureSession() {
+        session.beginConfiguration()
+        session.sessionPreset = .photo
+        
         let cameraDevice: AVCaptureDevice = configureCamera()
         do {
             self.deviceInput = try AVCaptureDeviceInput(device: cameraDevice)
-
+            
             self.videoOutput = AVCaptureVideoDataOutput()
             self.videoOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
-
+            
             self.photoOutput = AVCapturePhotoOutput()
             
             self.session.addInput(self.deviceInput)
             self.session.addOutput(self.videoOutput)
             self.session.addOutput(self.photoOutput)
-
+            
             self.videoOutput.connections.first?.videoOrientation = .portrait
             
         } catch {
             print("error = \(error.localizedDescription)")
         }
+        
+        session.commitConfiguration()
     }
 
     private func configureCamera() -> AVCaptureDevice {
@@ -228,12 +275,6 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
 
     // MARK: - private methods
     private var filterApplied: Bool = false
-
-    private let sepiaFilter: CIFilter = {
-        let filter = CIFilter(name: "CISepiaTone")!
-        filter.setValue(NSNumber(value: 1), forKeyPath: "inputIntensity")
-        return filter
-    }()
 
     @objc private func filterChangeButtonTapped(_ button: UIButton) {
         collectionView.isHidden.toggle()
@@ -316,6 +357,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     if let image = image as? UIImage {
+                        self.albumImage = image
                         self.imageView.image = image
                         self.imageView.isHidden = false
                         self.mtkView.isHidden = true
@@ -340,46 +382,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
 
         return nil
     }
-    
-    // MARK: - Collection View Configuration
-    private func configureCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: 80, height: 80)
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(FilterCell.self, forCellWithReuseIdentifier: FilterCell.identifier)
-        collectionView.isHidden = true
-        collectionView.backgroundColor = .black
-        
-        self.view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(100)
-        }
-        
-        // Close button for collection view
-        closeButton = UIButton(type: .system)
-        closeButton.setTitle("Close", for: .normal)
-        closeButton.setTitleColor(.white, for: .normal)
-        closeButton.backgroundColor = .black
-        closeButton.layer.cornerRadius = 20
-        closeButton.isHidden = true
-        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        
-        self.view.addSubview(closeButton)
-        closeButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
-            make.bottom.equalTo(collectionView.snp.top).offset(-10)
-            make.width.equalTo(80)
-            make.height.equalTo(40)
-        }
-    }
-    
+
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
@@ -399,7 +402,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     
     private func applySelectedFilter() {
         if isImageMode {
-            if let inputImage = self.imageView.image,
+            if let inputImage = self.albumImage,
                let cgInputImage = inputImage.cgImage,
                let filteredImage = applyFilter(inputImage: CIImage(cgImage: cgInputImage)) {
                 self.imageView.image = UIImage(ciImage: filteredImage)
@@ -408,33 +411,6 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
             }
         } else {
             self.filterApplied.toggle()
-        }
-    }
-    
-    // MARK: - Filter Cell
-    class FilterCell: UICollectionViewCell {
-        static let identifier = "FilterCell"
-
-        private let filterImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFit
-            return imageView
-        }()
-
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            contentView.addSubview(filterImageView)
-            filterImageView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        func configure(with imageName: String) {
-            filterImageView.image = UIImage(named: imageName)
         }
     }
 }
@@ -446,6 +422,15 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
 
         imageView.image = image
     }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
+        AudioServicesDisposeSystemSoundID(1108)
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
+        AudioServicesDisposeSystemSoundID(1108)
+    }
+
 }
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {

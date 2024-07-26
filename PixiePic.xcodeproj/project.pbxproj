@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D16701702C532A6400D4B3C3 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D167016F2C532A6400D4B3C3 /* FilterCell.swift */; };
 		D5AF771B2C4B931B00B89ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */; };
 		D5AF771D2C4B931B00B89ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */; };
 		D5AF771F2C4B931B00B89ECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771E2C4B931B00B89ECF /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D167016F2C532A6400D4B3C3 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		D5AF77172C4B931B00B89ECF /* PixiePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */,
 				D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */,
 				D5AF771E2C4B931B00B89ECF /* ViewController.swift */,
+				D167016F2C532A6400D4B3C3 /* FilterCell.swift */,
 				D5AF77202C4B931B00B89ECF /* Main.storyboard */,
 				D5AF77232C4B931C00B89ECF /* Assets.xcassets */,
 				D5AF77252C4B931C00B89ECF /* LaunchScreen.storyboard */,
@@ -165,6 +168,7 @@
 				D5AF77352C4B93D000B89ECF /* LookupFilter.swift in Sources */,
 				D5AF771D2C4B931B00B89ECF /* SceneDelegate.swift in Sources */,
 				D5AF77332C4B93C700B89ECF /* LookupModel.swift in Sources */,
+				D16701702C532A6400D4B3C3 /* FilterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +320,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				DEVELOPMENT_TEAM = 6M4C5C72YG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -345,7 +349,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MH57K7U7U;
+				DEVELOPMENT_TEAM = 6M4C5C72YG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
