@@ -21,7 +21,8 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     private var lookupFilter: LookupFilter?
     private var collectionView: UICollectionView!
     private var filterNames: [String] = LookupModel.allCases.map { $0.rawValue }
-    private var selectedFilterName: String = LookupModel.allCases.first?.rawValue ?? "None"
+    private var selectedFilterName: String = ""
+    private var selectedFilterIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -283,16 +284,36 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     
     @objc private func captureButtonTapped(_ button: UIButton) {
         if isImageMode {
-            guard let image = imageView.image else { return }
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            guard let image = albumImage else { return }
+            
+            var finalImage: UIImage = image
+            if let cgInputImage = image.cgImage,
+               let filteredImage = applyFilter(inputImage: CIImage(cgImage: cgInputImage)),
+               let filteredUIImage = ciImageToUIImage(ciImage: filteredImage) {
+                finalImage = filteredUIImage
+            }
+            UIImageWriteToSavedPhotosAlbum(finalImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         } else {
             imageView.isHidden = false
             mtkView.isHidden = true
             galleryAccessButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
             captureButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-            isImageMode = true
+            changeImageMode(true)
             let settings = AVCapturePhotoSettings()
             self.photoOutput.capturePhoto(with: settings, delegate: self)
+        }
+    }
+
+    @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("save error: \(error)")
+            let alert = UIAlertController(title: "저장실패", message: "사진을 저장하는데 실패했습니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "저장완료", message: "사진을 갤러리에 저장했습니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            present(alert, animated: true)
         }
     }
     
@@ -327,7 +348,8 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     
     @objc private func galleryAccessButtonTapped(_ button: UIButton) {
         if isImageMode {
-            isImageMode = false
+            removeFilter()
+            changeImageMode(false)
             self.galleryAccessButton.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
             self.captureButton.setImage(UIImage(systemName: "camera.circle"), for: .normal)
             self.imageView.isHidden = true
@@ -348,7 +370,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
-        isImageMode = false
+        changeImageMode(false)
         
         guard let itemProvider = results.first?.itemProvider else { return }
 
@@ -357,13 +379,14 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     if let image = image as? UIImage {
-                        self.albumImage = image
-                        self.imageView.image = image
+                        self.removeFilter()
+                        self.albumImage = image.fixedOrientation()
+                        self.imageView.image = self.albumImage
                         self.imageView.isHidden = false
                         self.mtkView.isHidden = true
                         self.galleryAccessButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
                         self.captureButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-                        self.isImageMode = true
+                        self.changeImageMode(true)
                     }
                 }
             }
@@ -391,13 +414,27 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
         let filterName = filterNames[indexPath.item]
-        cell.configure(with: filterName)
+        let isSelected = indexPath == selectedFilterIndex
+        cell.configure(with: filterName, isSelected: isSelected)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedFilterName = filterNames[indexPath.item]
-        applySelectedFilter()
+        if selectedFilterIndex == indexPath {
+            selectedFilterIndex = nil
+            selectedFilterName = ""
+            removeFilter()
+        } else {
+            let previousSelectedIndex = selectedFilterIndex
+            selectedFilterIndex = indexPath
+            selectedFilterName = filterNames[indexPath.item]
+            applySelectedFilter()
+            
+            if let previousSelectedIndex = previousSelectedIndex {
+                collectionView.reloadItems(at: [previousSelectedIndex])
+            }
+        }
+        collectionView.reloadItems(at: [indexPath])
     }
     
     private func applySelectedFilter() {
@@ -410,17 +447,50 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
                 print("Failed to apply filter")
             }
         } else {
-            self.filterApplied.toggle()
+            self.filterApplied = true
         }
+    }
+    
+    private func removeFilter() {
+        selectedFilterIndex = nil
+        selectedFilterName = ""
+        collectionView.reloadData()
+        if isImageMode {
+            self.imageView.image = self.albumImage
+        } else {
+            self.filterApplied = false
+        }
+    }
+    
+    private func ciImageToUIImage(ciImage: CIImage) -> UIImage? {
+        let context = CIContext(options: nil)
+        if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+            return UIImage(cgImage: cgImage)
+        }
+        return nil
+    }
+    
+    private func changeImageMode(_ mode: Bool) {
+        isImageMode = mode
+        switchCameraButton.isHidden = mode
     }
 }
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
-        guard let image = UIImage(data: imageData) else { return }
+        guard var image = UIImage(data: imageData) else { return }
 
-        imageView.image = image
+        image = image.fixedOrientation()
+
+        var finalImage: UIImage = image
+        if let cgInputImage = image.cgImage,
+           let filteredImage = applyFilter(inputImage: CIImage(cgImage: cgInputImage)),
+           let filteredUIImage = ciImageToUIImage(ciImage: filteredImage) {
+            finalImage = filteredUIImage
+        }
+        albumImage = finalImage
+        imageView.image = finalImage
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
@@ -460,11 +530,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     func applyFilter(inputImage image: CIImage) -> CIImage? {
+        if selectedFilterName == "" {
+            return image
+        }
         guard let lookup = LookupModel(filterName: selectedFilterName) else {
             print("Invalid filter name: \(selectedFilterName)")
             return nil
         }
-        
         lookupFilter = LookupFilter(inputImage: image)
         let filteredImage = lookupFilter!.applyFilter(with: lookup)
         return filteredImage
@@ -500,4 +572,14 @@ extension ViewController: MTKViewDelegate {
     }
 }
 
+extension UIImage {
+    func fixedOrientation() -> UIImage {
+        guard imageOrientation != .up else { return self }
 
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(in: CGRect(origin: .zero, size: size))
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return normalizedImage ?? self
+    }
+}
