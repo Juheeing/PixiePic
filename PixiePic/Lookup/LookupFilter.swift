@@ -87,7 +87,7 @@ class LookupFilter  {
     }
     
     func applyFilter(with lookup: LookupModel) -> CIImage? {
-        guard let lutImage = UIImage(named: lookup.rawValue) else { return nil }
+        guard let lutImage = UIImage(named: "\(lookup.rawValue)_lut") else { return nil }
         guard let data = getCubeData(lutImage: lutImage, dimension: 64, colorSpace: CGColorSpaceCreateDeviceRGB()) else { return nil }
         
         let filter = CIFilter(name: "CIColorCube", parameters: [
