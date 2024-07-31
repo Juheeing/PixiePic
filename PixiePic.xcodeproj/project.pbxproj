@@ -32,6 +32,7 @@
 		D177E40A2C59F70F000670F4 /* Goodmorning.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FF2C59F70F000670F4 /* Goodmorning.cube */; };
 		D177E40B2C59F70F000670F4 /* Passingby.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E4002C59F70F000670F4 /* Passingby.cube */; };
 		D177E40C2C59F70F000670F4 /* Onceuponatime.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E4012C59F70F000670F4 /* Onceuponatime.cube */; };
+		D54528762C5A6932007BAE27 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54528752C5A6932007BAE27 /* Colors.xcassets */; };
 		D5AF771B2C4B931B00B89ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */; };
 		D5AF771D2C4B931B00B89ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */; };
 		D5AF771F2C4B931B00B89ECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771E2C4B931B00B89ECF /* ViewController.swift */; };
@@ -69,6 +70,7 @@
 		D177E3FF2C59F70F000670F4 /* Goodmorning.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Goodmorning.cube; sourceTree = "<group>"; };
 		D177E4002C59F70F000670F4 /* Passingby.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Passingby.cube; sourceTree = "<group>"; };
 		D177E4012C59F70F000670F4 /* Onceuponatime.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Onceuponatime.cube; sourceTree = "<group>"; };
+		D54528752C5A6932007BAE27 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D5AF77172C4B931B00B89ECF /* PixiePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				D167016F2C532A6400D4B3C3 /* FilterCell.swift */,
 				D5AF77202C4B931B00B89ECF /* Main.storyboard */,
 				D5AF77232C4B931C00B89ECF /* Assets.xcassets */,
+				D54528752C5A6932007BAE27 /* Colors.xcassets */,
 				D5AF77252C4B931C00B89ECF /* LaunchScreen.storyboard */,
 				D5AF77282C4B931C00B89ECF /* Info.plist */,
 			);
@@ -243,6 +246,7 @@
 				D177E3F32C59D7A7000670F4 /* OrangeAndBlue.cube in Resources */,
 				D177E3F22C59D7A7000670F4 /* Waves.cube in Resources */,
 				D5AF77272C4B931C00B89ECF /* LaunchScreen.storyboard in Resources */,
+				D54528762C5A6932007BAE27 /* Colors.xcassets in Resources */,
 				D5AF77242C4B931C00B89ECF /* Assets.xcassets in Resources */,
 				D177E4082C59F70F000670F4 /* Youcandoit.cube in Resources */,
 				D177E40B2C59F70F000670F4 /* Passingby.cube in Resources */,
@@ -424,7 +428,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M4C5C72YG;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -453,7 +457,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M4C5C72YG;
+				DEVELOPMENT_TEAM = 5MH57K7U7U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

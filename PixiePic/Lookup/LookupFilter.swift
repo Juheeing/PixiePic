@@ -9,7 +9,6 @@ import UIKit
 import Foundation
 import AVFoundation
 import CoreImage
-import CoreGraphics
 
 class LookupFilter  {
     
