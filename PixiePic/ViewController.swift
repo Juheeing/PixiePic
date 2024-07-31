@@ -21,6 +21,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     private var lookupFilter: LookupFilter?
     private var collectionView: UICollectionView!
     private var filterNames: [String] = LookupModel.allCases.map { $0.rawValue }
+    private var filterNames2: [String] = LookupModel2.allCases.map { $0.rawValue }
     private var selectedFilterName: String = ""
     private var selectedFilterIndex: IndexPath?
     
@@ -408,12 +409,14 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterNames.count
+        //return filterNames.count
+        return filterNames2.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
-        let filterName = filterNames[indexPath.item]
+        //let filterName = filterNames[indexPath.item]
+        let filterName = filterNames2[indexPath.item]
         let isSelected = indexPath == selectedFilterIndex
         cell.configure(with: filterName, isSelected: isSelected)
         return cell
@@ -427,7 +430,8 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
         } else {
             let previousSelectedIndex = selectedFilterIndex
             selectedFilterIndex = indexPath
-            selectedFilterName = filterNames[indexPath.item]
+            //selectedFilterName = filterNames[indexPath.item]
+            selectedFilterName = filterNames2[indexPath.item]
             applySelectedFilter()
             
             if let previousSelectedIndex = previousSelectedIndex {
@@ -533,12 +537,18 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if selectedFilterName == "" {
             return image
         }
-        guard let lookup = LookupModel(filterName: selectedFilterName) else {
+//        guard let lookup = LookupModel(filterName: selectedFilterName) else {
+//            print("Invalid filter name: \(selectedFilterName)")
+//            return nil
+//        }
+        guard let lookup = LookupModel2(filterName: selectedFilterName) else {
             print("Invalid filter name: \(selectedFilterName)")
             return nil
         }
+        
         lookupFilter = LookupFilter(inputImage: image)
-        let filteredImage = lookupFilter!.applyFilter(with: lookup)
+        //let filteredImage = lookupFilter!.applyFilter(with: lookup)
+        let filteredImage = lookupFilter!.applyCubeFilter(with: lookup)
         return filteredImage
     }
 }

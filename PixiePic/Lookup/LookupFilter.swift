@@ -19,6 +19,73 @@ class LookupFilter  {
         self.inputImage = inputImage
     }
 
+    func loadCubeFile(url: URL) -> (cubeData: Data, dimension: Int)? {
+        do {
+            let cubeString = try String(contentsOf: url, encoding: .utf8)
+            let lines = cubeString.components(separatedBy: .newlines)
+            
+            var cubeData = [Float]()
+            var size = 0
+            
+            for line in lines {
+                if line.hasPrefix("#") {
+                    continue
+                } else if line.lowercased().hasPrefix("lut_3d_size") {
+                    let components = line.components(separatedBy: .whitespaces).filter { !$0.isEmpty }
+                    if let lutSize = Int(components.last!) {
+                        size = lutSize
+                    }
+                } else {
+                    let components = line.components(separatedBy: .whitespaces).filter { !$0.isEmpty }
+                    if components.count == 3 {
+                        cubeData.append(contentsOf: components.compactMap { Float($0) })
+                    }
+                }
+            }
+            
+            guard !cubeData.isEmpty else {
+                return nil
+            }
+            
+            let expectedCount = size * size * size * 3
+            guard cubeData.count == expectedCount else {
+                print("Error: cube data length \(cubeData.count) does not match expected length \(expectedCount)")
+                return nil
+            }
+
+            var rgbaData = [Float]()
+            for i in stride(from: 0, to: cubeData.count, by: 3) {
+                rgbaData.append(cubeData[i])
+                rgbaData.append(cubeData[i + 1])
+                rgbaData.append(cubeData[i + 2])
+                rgbaData.append(1.0)
+            }
+            
+            let data = rgbaData.withUnsafeBufferPointer { Data(buffer: $0) }
+            return (data, size)
+        } catch {
+            print("Error loading .cube file: \(error)")
+            return nil
+        }
+    }
+    
+    func applyCubeFilter(with lookup: LookupModel2) -> CIImage? {
+        
+        if let url = Bundle.main.url(forResource: lookup.rawValue, withExtension: "cube"),
+           let (cubeData, dimension) = loadCubeFile(url: url) {
+        
+            let filter = CIFilter(name: "CIColorCube", parameters: [
+                "inputCubeDimension": dimension,
+                "inputCubeData": cubeData,
+                "inputImage": inputImage!,
+              ])
+            
+            return filter?.outputImage
+        }
+
+        return nil
+    }
+    
     func applyFilter(with lookup: LookupModel) -> CIImage? {
         guard let lutImage = UIImage(named: lookup.rawValue) else { return nil }
         guard let data = getCubeData(lutImage: lutImage, dimension: 64, colorSpace: CGColorSpaceCreateDeviceRGB()) else { return nil }

@@ -76,3 +76,23 @@ enum LookupModel: String, CaseIterable {
         self.init(rawValue: filterName)
     }
 }
+
+enum LookupModel2: String, CaseIterable {
+    case BlueArchitecture
+    case BlueHour
+    case ColdChrome
+    case CrispAutumn
+    case DarkAndSomber
+    case HardBoost
+    case LongBeachMorning
+    case LushGreen
+    case MagicHour
+    case NaturalBoost
+    case OrangeAndBlue
+    case SoftBlackAndWhite
+    case Waves
+    
+    init?(filterName: String) {
+        self.init(rawValue: filterName)
+    }
+}
