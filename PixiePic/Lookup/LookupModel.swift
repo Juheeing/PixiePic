@@ -78,6 +78,19 @@ enum LookupModel: String, CaseIterable {
 }
 
 enum LookupModel2: String, CaseIterable {
+    // https://giggster.com/guide/free-luts/
+    case Undeniable
+    case Goingforawalk
+    case Goodmorning
+    case Nah
+    case Onceuponatime
+    case Passingby
+    case Serenity
+    case smoothsailing
+    case Urbancowboy
+    case wellsee
+    case Youcandoit
+    // https://www.shutterstock.com/blog/free-luts-for-log-footage
     case BlueArchitecture
     case BlueHour
     case ColdChrome

@@ -21,6 +21,17 @@
 		D177E3F12C59D7A7000670F4 /* DarkAndSomber.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3E42C59D7A7000670F4 /* DarkAndSomber.cube */; };
 		D177E3F22C59D7A7000670F4 /* Waves.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3E52C59D7A7000670F4 /* Waves.cube */; };
 		D177E3F32C59D7A7000670F4 /* OrangeAndBlue.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3E62C59D7A7000670F4 /* OrangeAndBlue.cube */; };
+		D177E3F62C59F580000670F4 /* Undeniable.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3F52C59F580000670F4 /* Undeniable.cube */; };
+		D177E4022C59F70F000670F4 /* Nah.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3F72C59F70F000670F4 /* Nah.cube */; };
+		D177E4032C59F70F000670F4 /* Serenity.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3F82C59F70F000670F4 /* Serenity.cube */; };
+		D177E4042C59F70F000670F4 /* Urbancowboy.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3F92C59F70F000670F4 /* Urbancowboy.cube */; };
+		D177E4052C59F70F000670F4 /* Goingforawalk.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FA2C59F70F000670F4 /* Goingforawalk.cube */; };
+		D177E4062C59F70F000670F4 /* smoothsailing.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FB2C59F70F000670F4 /* smoothsailing.cube */; };
+		D177E4082C59F70F000670F4 /* Youcandoit.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FD2C59F70F000670F4 /* Youcandoit.cube */; };
+		D177E4092C59F70F000670F4 /* wellsee.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FE2C59F70F000670F4 /* wellsee.cube */; };
+		D177E40A2C59F70F000670F4 /* Goodmorning.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E3FF2C59F70F000670F4 /* Goodmorning.cube */; };
+		D177E40B2C59F70F000670F4 /* Passingby.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E4002C59F70F000670F4 /* Passingby.cube */; };
+		D177E40C2C59F70F000670F4 /* Onceuponatime.cube in Resources */ = {isa = PBXBuildFile; fileRef = D177E4012C59F70F000670F4 /* Onceuponatime.cube */; };
 		D5AF771B2C4B931B00B89ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */; };
 		D5AF771D2C4B931B00B89ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */; };
 		D5AF771F2C4B931B00B89ECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF771E2C4B931B00B89ECF /* ViewController.swift */; };
@@ -47,6 +58,17 @@
 		D177E3E42C59D7A7000670F4 /* DarkAndSomber.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DarkAndSomber.cube; sourceTree = "<group>"; };
 		D177E3E52C59D7A7000670F4 /* Waves.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Waves.cube; sourceTree = "<group>"; };
 		D177E3E62C59D7A7000670F4 /* OrangeAndBlue.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrangeAndBlue.cube; sourceTree = "<group>"; };
+		D177E3F52C59F580000670F4 /* Undeniable.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Undeniable.cube; sourceTree = "<group>"; };
+		D177E3F72C59F70F000670F4 /* Nah.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nah.cube; sourceTree = "<group>"; };
+		D177E3F82C59F70F000670F4 /* Serenity.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Serenity.cube; sourceTree = "<group>"; };
+		D177E3F92C59F70F000670F4 /* Urbancowboy.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Urbancowboy.cube; sourceTree = "<group>"; };
+		D177E3FA2C59F70F000670F4 /* Goingforawalk.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Goingforawalk.cube; sourceTree = "<group>"; };
+		D177E3FB2C59F70F000670F4 /* smoothsailing.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = smoothsailing.cube; sourceTree = "<group>"; };
+		D177E3FD2C59F70F000670F4 /* Youcandoit.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Youcandoit.cube; sourceTree = "<group>"; };
+		D177E3FE2C59F70F000670F4 /* wellsee.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wellsee.cube; sourceTree = "<group>"; };
+		D177E3FF2C59F70F000670F4 /* Goodmorning.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Goodmorning.cube; sourceTree = "<group>"; };
+		D177E4002C59F70F000670F4 /* Passingby.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Passingby.cube; sourceTree = "<group>"; };
+		D177E4012C59F70F000670F4 /* Onceuponatime.cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Onceuponatime.cube; sourceTree = "<group>"; };
 		D5AF77172C4B931B00B89ECF /* PixiePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AF771A2C4B931B00B89ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5AF771C2C4B931B00B89ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +96,17 @@
 		D177E3F42C59D7E6000670F4 /* LUTs */ = {
 			isa = PBXGroup;
 			children = (
+				D177E3F52C59F580000670F4 /* Undeniable.cube */,
+				D177E3FA2C59F70F000670F4 /* Goingforawalk.cube */,
+				D177E3FF2C59F70F000670F4 /* Goodmorning.cube */,
+				D177E3F72C59F70F000670F4 /* Nah.cube */,
+				D177E4012C59F70F000670F4 /* Onceuponatime.cube */,
+				D177E4002C59F70F000670F4 /* Passingby.cube */,
+				D177E3F82C59F70F000670F4 /* Serenity.cube */,
+				D177E3FB2C59F70F000670F4 /* smoothsailing.cube */,
+				D177E3F92C59F70F000670F4 /* Urbancowboy.cube */,
+				D177E3FE2C59F70F000670F4 /* wellsee.cube */,
+				D177E3FD2C59F70F000670F4 /* Youcandoit.cube */,
 				D177E3DD2C59D7A6000670F4 /* BlueArchitecture.cube */,
 				D177E3E22C59D7A7000670F4 /* BlueHour.cube */,
 				D177E3E12C59D7A7000670F4 /* ColdChrome.cube */,
@@ -199,6 +232,10 @@
 			files = (
 				D177E3EB2C59D7A7000670F4 /* LushGreen.cube in Resources */,
 				D177E3E92C59D7A7000670F4 /* CrispAutumn.cube in Resources */,
+				D177E4022C59F70F000670F4 /* Nah.cube in Resources */,
+				D177E4092C59F70F000670F4 /* wellsee.cube in Resources */,
+				D177E4052C59F70F000670F4 /* Goingforawalk.cube in Resources */,
+				D177E4062C59F70F000670F4 /* smoothsailing.cube in Resources */,
 				D177E3F12C59D7A7000670F4 /* DarkAndSomber.cube in Resources */,
 				D177E3E72C59D7A7000670F4 /* SoftBlackAndWhite.cube in Resources */,
 				D177E3EE2C59D7A7000670F4 /* ColdChrome.cube in Resources */,
@@ -207,10 +244,17 @@
 				D177E3F22C59D7A7000670F4 /* Waves.cube in Resources */,
 				D5AF77272C4B931C00B89ECF /* LaunchScreen.storyboard in Resources */,
 				D5AF77242C4B931C00B89ECF /* Assets.xcassets in Resources */,
+				D177E4082C59F70F000670F4 /* Youcandoit.cube in Resources */,
+				D177E40B2C59F70F000670F4 /* Passingby.cube in Resources */,
+				D177E3F62C59F580000670F4 /* Undeniable.cube in Resources */,
 				D5AF77222C4B931B00B89ECF /* Main.storyboard in Resources */,
+				D177E4042C59F70F000670F4 /* Urbancowboy.cube in Resources */,
+				D177E40A2C59F70F000670F4 /* Goodmorning.cube in Resources */,
+				D177E4032C59F70F000670F4 /* Serenity.cube in Resources */,
 				D177E3EF2C59D7A7000670F4 /* BlueHour.cube in Resources */,
 				D177E3ED2C59D7A7000670F4 /* HardBoost.cube in Resources */,
 				D177E3E82C59D7A7000670F4 /* LongBeachMorning.cube in Resources */,
+				D177E40C2C59F70F000670F4 /* Onceuponatime.cube in Resources */,
 				D177E3F02C59D7A7000670F4 /* MagicHour.cube in Resources */,
 				D177E3EC2C59D7A7000670F4 /* NaturalBoost.cube in Resources */,
 			);
