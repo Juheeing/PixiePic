@@ -503,28 +503,30 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-
-        let ciImage = CIImage(cvImageBuffer: cvBuffer)
-
-        if self.filterApplied {
-            guard let filteredImage = applyFilter(inputImage: ciImage) else {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
                 return
             }
-
-            self.currentCIImage = filteredImage
-
-        } else {
-            self.currentCIImage = ciImage
+            
+            let ciImage = CIImage(cvImageBuffer: cvBuffer)
+            
+            if self.filterApplied {
+                guard let filteredImage = self.applyFilter(inputImage: ciImage) else {
+                    return
+                }
+                
+                self.currentCIImage = filteredImage
+                
+            } else {
+                self.currentCIImage = ciImage
+            }
+            
+            let imageSize = CIImage(cvImageBuffer: cvBuffer).extent.size
+            DispatchQueue.main.async {
+                self.mtkView.drawableSize = CGSize(width: imageSize.width, height: imageSize.height)
+                self.mtkView.draw()
+            }
         }
-
-        let imageSize = CIImage(cvImageBuffer: cvBuffer).extent.size
-        DispatchQueue.main.async {
-            self.mtkView.drawableSize = CGSize(width: imageSize.width, height: imageSize.height)
-        }
-        self.mtkView.draw()
     }
 
     func applyFilter(inputImage image: CIImage) -> CIImage? {
