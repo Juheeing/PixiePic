@@ -57,17 +57,15 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     private var filterChangeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "camera.filters"), for: .normal)
-        button.backgroundColor = .darkGray
         button.tintColor = .white
-        button.layer.cornerRadius = 20
         return button
     }()
     
     private var captureButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "camera.circle"), for: .normal)
-        button.backgroundColor = .darkGray
-        button.tintColor = .white
+        button.backgroundColor = .white
+        button.tintColor = .black
         button.layer.cornerRadius = 40
         return button
     }()
@@ -75,27 +73,21 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
     private var switchCameraButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
-        button.backgroundColor = .darkGray
         button.tintColor = .white
-        button.layer.cornerRadius = 20
         return button
     }()
     
     private var galleryAccessButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
-        button.backgroundColor = .darkGray
         button.tintColor = .white
-        button.layer.cornerRadius = 20
         return button
     }()
     
     private var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
-        button.backgroundColor = .darkGray
         button.tintColor = .white
-        button.layer.cornerRadius = 20
         return button
     }()
     
@@ -117,12 +109,14 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
             make.width.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(mtkView.snp.width).multipliedBy(4.0/3.0)
             make.center.equalTo(view.safeAreaLayoutGuide)
+            make.centerY.equalTo(view.safeAreaLayoutGuide).offset(-30)
         }
 
         self.imageView.snp.makeConstraints { make in
             make.width.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(imageView.snp.width).multipliedBy(4.0/3.0)
             make.center.equalTo(view.safeAreaLayoutGuide)
+            make.centerY.equalTo(view.safeAreaLayoutGuide).offset(-30)
         }
         
         self.imageView.contentMode = .scaleAspectFit
@@ -130,7 +124,7 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
         
         self.captureButton.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.width.height.equalTo(80)
         }
 
@@ -180,8 +174,8 @@ class ViewController: UIViewController, PHPickerViewControllerDelegate, UICollec
         }
         
         closeButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
-            make.bottom.equalTo(collectionView.snp.top).offset(-10)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-10)
+            make.bottom.equalTo(collectionView.snp.top).offset(0)
             make.width.equalTo(40)
             make.height.equalTo(40)
         }
