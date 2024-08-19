@@ -432,8 +432,8 @@
 				DEVELOPMENT_TEAM = 5MH57K7U7U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)을 사용하시려면 앨범 접근 허용이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME)을 사용하시려면 카메라 접근 허용이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) 을 사용하시려면 카메라 접근 허용이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) 을 사용하시려면 앨범 접근 허용이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -465,8 +465,8 @@
 				DEVELOPMENT_TEAM = 5MH57K7U7U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PixiePic/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)을 사용하시려면 앨범 접근 허용이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME)을 사용하시려면 카메라 접근 허용이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) 을 사용하시려면 카메라 접근 허용이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) 을 사용하시려면 앨범 접근 허용이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
